@@ -1,0 +1,22 @@
+# Server Configuration
+server:
+  port: 8090
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: Chain Reaction
+    version: 0.0.1
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: Europe/Zagreb
+  datasource:
+    url: jdbc:postgresql://localhost:5432/chainreactiondb
+    username: pgalina
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      show-sql: true
