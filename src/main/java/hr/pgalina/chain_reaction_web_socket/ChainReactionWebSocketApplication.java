@@ -1,4 +1,4 @@
-package hr.pgalina.chainreactionwebsocket;
+package hr.pgalina.chain_reaction_web_socket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

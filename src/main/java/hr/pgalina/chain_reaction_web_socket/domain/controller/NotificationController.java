@@ -31,7 +31,7 @@ public class NotificationController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        simpMessagingTemplate.convertAndSendToUser(String.valueOf(idUser), "/queue/topic/private-notification", updated);
+        simpMessagingTemplate.convertAndSendToUser(String.valueOf(idUser), "/queue/topic/private-notifications", updated);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

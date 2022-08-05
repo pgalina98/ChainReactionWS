@@ -1,10 +1,14 @@
 package hr.pgalina.chain_reaction_web_socket.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+@Configuration
+@EnableWebSocketMessageBroker
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
     @Override
@@ -26,8 +30,8 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
         taskScheduler.initialize();
 
         registry.enableSimpleBroker("/queue")
-                .setHeartbeatValue(new long[]{25000, 25000})
-                .setTaskScheduler(taskScheduler);
+            .setHeartbeatValue(new long[]{25000, 25000})
+            .setTaskScheduler(taskScheduler);
 
         registry.setApplicationDestinationPrefixes("/app");
     }

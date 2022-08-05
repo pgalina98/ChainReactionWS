@@ -13,11 +13,11 @@ import java.util.Map;
 @Slf4j
 public class UserHandshakeHandler extends DefaultHandshakeHandler {
 
-    public static final String USER_ID_PARAM = "userId";
+    public static final String ID_USER_PARAM = "idUser";
 
     @Override
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
-        String userId = ((ServletServerHttpRequest) request).getServletRequest().getParameter(USER_ID_PARAM);
+        String userId = ((ServletServerHttpRequest) request).getServletRequest().getParameter(ID_USER_PARAM);
 
         log.info("User with id {} successfully logged in [TCP HANDSHAKE].", userId);
 
