@@ -17,7 +17,7 @@ public class NotificationController {
 
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    @GetMapping("/update/{idUser}&{updated}")
+    @PostMapping("/update/{idUser}&{updated}")
     public ResponseEntity<?> updateNotificationsCount(
         @RequestHeader(value = "Authorization") String token,
         @PathVariable Long idUser,
