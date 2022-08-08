@@ -19,7 +19,7 @@ public class UserHandshakeHandler extends DefaultHandshakeHandler {
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
         String userId = ((ServletServerHttpRequest) request).getServletRequest().getParameter(ID_USER_PARAM);
 
-        log.info("User with id {} successfully logged in [TCP HANDSHAKE].", userId);
+        log.info("User with id {} successfully logged in.", userId);
 
         return new UserPrincipal(userId);
     }

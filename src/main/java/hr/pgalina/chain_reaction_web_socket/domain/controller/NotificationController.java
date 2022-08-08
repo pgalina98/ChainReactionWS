@@ -9,21 +9,21 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+@RestController
+@RequestMapping("/ws/notifications")
 @RequiredArgsConstructor
-@RestController("/ws/notifications")
 public class NotificationController {
 
     private final RequestValidator requestValidator;
 
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    @PostMapping("/update/{idUser}&{updated}")
+    @PostMapping("/update")
     public ResponseEntity<?> updateNotificationsCount(
         @RequestHeader(value = "Authorization") String token,
-        @PathVariable Long idUser,
-        @PathVariable boolean updated
+        @RequestParam Long idUser
     ) {
-        log.info("Entered '/ws/notifications/update/{idUser}&{updated}' with token {}, user ID {} and updated {} [GET].", token, idUser, updated);
+        log.info("Entered '/ws/notifications/update' with token {} and user ID {} [GET].", token, idUser);
 
         if (!requestValidator.validatePrivilegedToken(token)) {
             log.error("Token {} is not valid.", token);
@@ -31,7 +31,7 @@ public class NotificationController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        simpMessagingTemplate.convertAndSendToUser(String.valueOf(idUser), "/queue/topic/private-notifications", updated);
+        simpMessagingTemplate.convertAndSendToUser(String.valueOf(idUser), "/queue/topic/private-notifications", Boolean.TRUE);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
